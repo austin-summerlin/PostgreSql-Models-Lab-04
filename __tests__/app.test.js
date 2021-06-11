@@ -66,6 +66,7 @@ describe('dog routes', () => {
       age: 5,
       type: 'pitbull'
     });
+
     const updatedDog = await Dog.update({
       name: 'spot',
       age: 6,
