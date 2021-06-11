@@ -4,12 +4,6 @@ import request from 'supertest';
 import app from '../lib/app.js';
 import Dog from '../lib/models/Dog.js';
 
-describe('demo routes', () => {
-  beforeEach(() => {
-    return setup(pool);
-  });
-});
-
 // CRUD
 // C - create POST   INSERT
 // R - read   GET    SELECT
