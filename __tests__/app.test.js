@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Dog from '../lib/models/Dog.js';
 
 describe('demo routes', () => {
   beforeEach(() => {
@@ -31,6 +32,17 @@ describe('dog routes', () => {
       age: 5,
       type: 'pitbull'
     });
+  });
+
+  it('finds a dog by id via GET', async () => {
+    const dog = await Dog.insert({
+      name: 'sunny',
+      age: 11,
+      type: 'chihuhua'
+    });
+
+    const res = await request(app).get(`/api/vi/dogs/${dog.id}`);
+    expect(res.body).toEqual(dog);
   });
 });
 
