@@ -35,7 +35,7 @@ describe('dog routes', () => {
       type: 'chihuhua'
     });
 
-    const res = await request(app).get(`/api/vi/dogs/${dog.id}`);
+    const res = await request(app).get(`/api/v1/dogs/${dog.id}`);
     expect(res.body).toEqual(dog);
   });
 });
