@@ -60,4 +60,21 @@ describe('dog routes', () => {
     expect(res.body).toEqual([spot, sunny, kota]);
   });
 
+  it('updates a beer by id via PUT', async () => {
+    const spot = await Dog.insert({
+      name: 'spot',
+      age: 5,
+      type: 'pitbull'
+    });
+    const updatedSpot = ({
+      id: '1',
+      name: 'spot',
+      age: 6,
+      type: 'pitbull'
+    });
+
+    const res = await request(app).put(`/api/v1/dogs/${spot.id}`).send(updatedSpot);
+    expect(res.body).toEqual(updatedSpot);
+  });
+
 });
