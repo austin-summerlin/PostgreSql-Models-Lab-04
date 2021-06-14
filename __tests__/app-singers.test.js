@@ -68,5 +68,13 @@ describe('singers routes', () => {
     const res = await request(app).put(`/api/v1/singers/${prince.id}`).send(updatedPrince);
     expect(res.body).toEqual(updatedPrince);
   });
+  it('deletes a singer via DELETE', async () => {
+    const bowie = await Singer.insert({
+      name: 'David Bowie',
+      realname: 'David Jones'
+    });
+    const res = await request(app).delete(`/api/v1/singers/${bowie.id}`).send(bowie);
+    expect(res.body).toEqual(bowie);
+  });
 });
 
