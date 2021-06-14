@@ -16,10 +16,9 @@ CREATE TABLE people (
   died TEXT NOT NULL
 );
 
-RCEATE TABLE singers (
+CREATE TABLE singers (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name TEXT NOT NULL,
-  born TEXT NOT NULL,
-  died TEXT NOT NULL
+  realname TEXT NOT NULL
 );
 

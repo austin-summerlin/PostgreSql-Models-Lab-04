@@ -15,7 +15,7 @@ describe('people routes', () => {
     return setup(pool);
   });
 
-  it('creats a person via POST', async () => {
+  it('creates a person via POST', async () => {
     const res = await request(app)
       .post('/api/v1/people')
       .send({ name: 'Marlene Dietrich', born: '27 Dec 1901', died: '06 May 1992' });
