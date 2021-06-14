@@ -54,5 +54,19 @@ describe('singers routes', () => {
     const res = await request(app).get('/api/v1/singers');
     expect(res.body).toEqual([bowie, patti, gaga]);
   });
+  it('updates a singer via UPDATE', async () => {
+    const prince = await Singer.insert({
+      name: 'Prince',
+      realname: 'Prince Rogers Nelson'
+    });
+    const updatedPrince = ({
+      id: '1',
+      name: 'The Artist Formerly Known as Prince',
+      realname: 'Prince Rogers Nelson'
+    });
+
+    const res = await request(app).put(`/api/v1/singers/${prince.id}`).send(updatedPrince);
+    expect(res.body).toEqual(updatedPrince);
+  });
 });
 
