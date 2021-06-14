@@ -28,5 +28,17 @@ describe('car routes', () => {
     });
   });
 
+  it('finds a car by id via GET', async () => {
+    const car = await Car.insert({
+      car: 'Ford Mustang',
+      color: 'Forest Green',
+      year: 1968
+    });
+
+    const res = await request(app).get(`/api/v1/cars/${car.id}`);
+    expect(res.body).toEqual(car);
+  });
+
+
 
 });
