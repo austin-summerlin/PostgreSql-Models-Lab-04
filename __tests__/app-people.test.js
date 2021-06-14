@@ -3,7 +3,6 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 import People from '../lib/models/People.js';
-import Dog from '../lib/models/Dog.js';
 
 // CRUD
 // C - create POST   INSERT
@@ -58,5 +57,22 @@ describe('people routes', () => {
 
     const res = await request(app).get('/api/v1/people');
     expect(res.body).toEqual([marlene, josephine, edith]);
+  });
+
+  it('UPDATES a person via PUT', async () => {
+    const marlene = await People.insert({
+      name: 'Marlene Dietrich',
+      born: '27 Dec 1901',
+      died: '06 May 1992'
+    });
+    const updatedMarlene = ({
+      id: '1',
+      name: 'Lily Marlene',
+      born: '27 Dec 1901',
+      died: '06 May 1992'
+    });
+
+    const res = await request(app).put(`/api/v1/people/${marlene.id}`).send(updatedMarlene);
+    expect(res.body).toEqual(updatedMarlene);
   });
 });
