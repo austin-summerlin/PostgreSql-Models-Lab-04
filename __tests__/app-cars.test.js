@@ -76,4 +76,14 @@ describe('car routes', () => {
     expect(res.body).toEqual(updatedMustang);
   });
 
+  it('deletes a car by id via DELETE', async () => {
+    const mustang = await Car.insert({
+      car: 'Ford Mustang',
+      color: 'Forest Green',
+      year: 1968
+    });
+    const res = await request(app).delete(`/api/v1/cars/${mustang.id}`).send(mustang);
+    expect(res.body).toEqual(mustang);
+  });
+
 });
