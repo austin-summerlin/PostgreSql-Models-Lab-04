@@ -75,4 +75,14 @@ describe('people routes', () => {
     const res = await request(app).put(`/api/v1/people/${marlene.id}`).send(updatedMarlene);
     expect(res.body).toEqual(updatedMarlene);
   });
+
+  it('deletes a dog by id via DELETE', async () => {
+    const marlene = await People.insert({
+      name: 'Marlene Dietrich',
+      born: '27 Dec 1901',
+      died: '06 May 1992'
+    });
+    const res = await request(app).delete(`/api/v1/people/${marlene.id}`).send(marlene);
+    expect(res.body).toEqual(marlene);
+  });
 });
